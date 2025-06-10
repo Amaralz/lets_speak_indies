@@ -1,7 +1,14 @@
 <template>
     <header class="top-bar">
+        <button class="menu-button" @click="toggleSidebar">
+            <span class="material-icons"> {{ isSidebarOpen ? 'close' : 'menu' }}</span>
+        </button>
         <div class="site-name">
             <h1>{{ siteName }}</h1>
+        </div>
+        <div v-if="isAuthenticated" class="user-info">
+            <span>Olá, {{ userName }}</span>
+            <button @click="logout">Sair</button>
         </div>
     </header>
 </template>
@@ -9,6 +16,8 @@
 
 <script setup>
 import { defineProps } from 'vue';
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
 
 const props = defineProps({
     siteName: {
@@ -16,6 +25,24 @@ const props = defineProps({
         default: 'lets speak indies'
     }
 });
+
+const isSidebarOpen = ref(false);
+const toggleSidebar = () => {
+    isSidebarOpen.value = !isSidebarOpen.value;
+};
+
+const isAuthenticated = ref(!!localStorage.getItem('authToken'));
+const userName = ref('Usuário');
+const router = useRouter();
+
+const logout = () => {
+    localStorage.removeItem('authToken');
+    isAuthenticated.value = false;
+    router.push('/login');
+};
+
+defineExpose({ isSidebarOpen });
+
 </script>
 
 <style scoped>
@@ -35,6 +62,41 @@ const props = defineProps({
 .site-name h1 {
     margin:0;
     font-size:1.5rem;
+}
+
+.menu-button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    margin-right: 1rem;
+}
+
+.site-name h1{
+    margin: 0;
+    font-size: 1.5rem;
+    flex-grow: 1;
+    text-align: center;
+}
+
+.user-info{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.user-info button {
+    background-color: #ff4444;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.user-info button:hover {
+    background-color: #cc0000;
 }
 
 </style>

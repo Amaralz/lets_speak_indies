@@ -44,13 +44,13 @@ const closeSidebar = () => {
 .sidebar {
     background-color: #222;
     color:white;
-    width: 150px;
+    width: 250px;
     height: 100vh;
     position: fixed;
     top: 60px; /* abaixo da top bar*/
     left: 0;
     transform: translateX(-100%);
-    transition: trasnform 0.3s ease-in-out;
+    transition: transform 0.3s ease-in-out;
     z-index: 999;
     padding: 1rem;
     box-shadow: 2px 0 4px rgba(0, 0, 0, 0.2);

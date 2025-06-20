@@ -40,7 +40,7 @@ main {
   background-color: #f0f0f0;
   transition: margin-left 0.3s ease-in-out;
   margin-left: 0;
-  padding: 1rem;
+  padding: 2rem;
   min-height: calc(100vh - 60px); /* Evita que o conteúdo seja cortado */
   box-sizing: border-box;
 }

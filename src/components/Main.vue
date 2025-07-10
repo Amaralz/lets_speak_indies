@@ -1,18 +1,15 @@
-<script setup lang="ts">
-
+<script setup>
+console.log('Main.vue renderizado'); // Depuração
 </script>
 
 <template>
   <main>
-    <h1 class="test">hello amigos da rede globo </h1>
-    
+    <slot />
   </main>
-  
 </template>
 
 <style scoped>
-.test {
-  color: #888;
+main {
+  display: block;
 }
-
 </style>
